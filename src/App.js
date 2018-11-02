@@ -4,9 +4,14 @@ import './App.css';
 import Panel from './components/controls/Panel'
 import TaskList from './components/tasklist/TaskList'
 import Modal from './components/modals/Modal'
+import tasklist from './data/TasksData'
 
 class App extends Component {
     render() {
+
+        const key = "tasks"
+        localStorage.setItem(key, JSON.stringify(tasklist));
+
         return (
             <div className="App">
                 <div>

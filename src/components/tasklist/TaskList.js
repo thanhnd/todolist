@@ -1,9 +1,26 @@
 import React, { Component } from 'react';
 import TaskItem from './TaskItem';
-import tasklist from '../../data/TasksData'
+
 
 class TaskList extends Component {
+
     render() {
+
+        const key = "tasks"
+        let tasklist = {}
+
+
+        if (localStorage.hasOwnProperty(key)) {
+
+            tasklist = localStorage.getItem(key);
+
+            // parse the localStorage string and setState
+            try {
+                tasklist = JSON.parse(tasklist);
+            } catch (e) {
+            }
+        }
+
         return (
             <div className="col-md-9 px-0">
                 <div className="container-fluid px-0">
@@ -35,9 +52,11 @@ class TaskList extends Component {
                         </thead>
                         <tbody>
                             {
+
                                 tasklist.map((task, index) => {
-                                    return <TaskItem task={task} index={index}/>
+                                    return <TaskItem task={task} index={index} />
                                 })
+
                             }
                         </tbody>
                     </table>
