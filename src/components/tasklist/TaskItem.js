@@ -60,11 +60,11 @@ class TaskItem extends Component {
                 <td className="text-center d-flex align-items-center">
                     <button type="button" className="btn btn-outline-primary">Sửa</button>
                     <div className="form-group ml-2 mt-3">
-                        <select className="form-control">
+                        <select className="form-control" defaultValue={task.status}>
                             <option>Chọn trạng thái</option>
-                            <option value="1" selected={task.status === 1}>Chưa bắt đầu</option>
-                            <option value="2" selected={task.status === 2}>Đang tiến hành</option>
-                            <option value="3" selected={task.status === 3}>Đã hoàn thành</option>
+                            <option value="1">Chưa bắt đầu</option>
+                            <option value="2">Đang tiến hành</option>
+                            <option value="3">Đã hoàn thành</option>
 
                         </select>
 

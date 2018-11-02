@@ -7,11 +7,39 @@ import Modal from './components/modals/Modal'
 import tasklist from './data/TasksData'
 
 class App extends Component {
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            tasks: []
+        }
+    }
+    
+    initializeTask = () => {
+        console.log("Task")
+    }
+    
+    componentWillMount() {
+        localStorage.setItem("tasks", JSON.stringify(tasklist));
+        
+    }
+
+    componentDidMount(){
+        if (localStorage.hasOwnProperty("tasks")) {
+
+            let tasklist = localStorage.getItem("tasks");
+
+            // parse the localStorage string and setState
+            try {
+                tasklist = JSON.parse(tasklist);
+                this.setState({tasks: tasklist})
+                
+            } catch (e) {
+            }
+        }
+    }
+    
     render() {
-
-        const key = "tasks"
-        localStorage.setItem(key, JSON.stringify(tasklist));
-
         return (
             <div className="App">
                 <div>
@@ -19,10 +47,10 @@ class App extends Component {
                     <div className="container-fluid">
                         <div className="row">
                             {/* PANEL */}
-                            <Panel />
+                            <Panel initializeTask={this.initializeTask}/>
 
                             {/* DISPLAY */}
-                            <TaskList />
+                            <TaskList data={this.state.tasks}/>
                         </div>
                     </div>
                     

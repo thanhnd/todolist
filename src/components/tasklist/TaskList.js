@@ -6,20 +6,7 @@ class TaskList extends Component {
 
     render() {
 
-        const key = "tasks"
-        let tasklist = {}
-
-
-        if (localStorage.hasOwnProperty(key)) {
-
-            tasklist = localStorage.getItem(key);
-
-            // parse the localStorage string and setState
-            try {
-                tasklist = JSON.parse(tasklist);
-            } catch (e) {
-            }
-        }
+        
 
         return (
             <div className="col-md-9 px-0">
@@ -53,8 +40,8 @@ class TaskList extends Component {
                         <tbody>
                             {
 
-                                tasklist.map((task, index) => {
-                                    return <TaskItem task={task} index={index} />
+                                this.props.data.map((task, index) => {
+                                    return <TaskItem task={task} key={index} index={index}/>
                                 })
 
                             }
