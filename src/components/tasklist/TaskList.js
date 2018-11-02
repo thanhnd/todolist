@@ -36,7 +36,7 @@ class TaskList extends Component {
                         <tbody>
                             {
                                 tasklist.map((task, index) => {
-                                    return <TaskItem task={task} />
+                                    return <TaskItem task={task} index={index}/>
                                 })
                             }
                         </tbody>

@@ -1,37 +1,79 @@
 import React, { Component } from 'react';
 
 class TaskItem extends Component {
+
     render() {
+        let priority = {
+            1: "Cao",
+            2: "Trung Bình",
+            3: "Thấp"
+        }
+
+        let priorityColor = {
+            1: "danger",
+            2: "warning",
+            3: "info"
+        }
+
+        let status = {
+            1: "fa fa-anchor mr-2",
+            2: "fa fa-spinner mr-2",
+            3: "fa fa-check-square-o mr-2",
+            4: "fa fa-trash-o mr-2",
+
+        }
+        let labelColor = {
+            "Frontend": "#389E0D",
+            "Backend": "#722ED1",
+            "API": "#13C2C2",
+            "Issue": "#CF1322",
+
+        }
+        let { task, index } = this.props
         return (
             <tr>
-                <td className="text-center">1</td>
-                <td className="text-center">Soạn ReactJS</td>
+                <td className="text-center">{index + 1}</td>
+                <td className="text-center">{task.name}</td>
                 <td className="text-center">
-                  <i className="fa fa-circle" style={{color: '#389E0D'}} />
-                  <i className="fa fa-circle" style={{color: '#13C2C2'}} />
+                    {
+                        task.labelArr.map((label, index) => {
+                            return <i
+                                key={index}
+                                className="fa fa-circle"
+                                style={{ color: labelColor[label] }} />
+                        })
+                    }
+
                 </td>
-                <td className="text-danger font-weight-bold text-center">Cao</td>
+                <td className={`text-${priorityColor[task.priority]} font-weight-bold text-center`}>{priority[task.priority]}</td>
                 <td className="text-center">
-                  <img src="./img/user_2.jpg" className="user" alt="" />
-                  <img src="./img/user_3.jpg" className="user" alt="" />
+                    {
+                        task.memberIDArr.map((user, index) => {
+                            return <img
+                                key={index}
+                                src={`./img/${user}.jpg`}
+                                className="user"
+                                alt="" />
+                        })
+                    }
                 </td>
                 <td className="text-center d-flex align-items-center">
-                  <button type="button" className="btn btn-outline-primary">Sửa</button>
-                  <div className="form-group ml-2 mt-3">
-                    <select className="form-control">
-                        <option>Chọn trạng thái</option>
-                        <option>Chưa bắt đầu</option>
-                        <option>Đang tiến hành</option>
-                        <option>Đã hoàn thành</option>
+                    <button type="button" className="btn btn-outline-primary">Sửa</button>
+                    <div className="form-group ml-2 mt-3">
+                        <select className="form-control">
+                            <option>Chọn trạng thái</option>
+                            <option value="1" selected={task.status === 1}>Chưa bắt đầu</option>
+                            <option value="2" selected={task.status === 2}>Đang tiến hành</option>
+                            <option value="3" selected={task.status === 3}>Đã hoàn thành</option>
 
-                    </select>
+                        </select>
 
-                  </div>
+                    </div>
                 </td>
                 <td className="text-center">
-                  <i className="fa fa-check-square-o mr-2" />
+                    <i className={status[task.status]} />
                 </td>
-              </tr>
+            </tr>
         );
     }
 }
