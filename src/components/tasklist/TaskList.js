@@ -38,7 +38,12 @@ class TaskList extends Component {
                         </thead>
                         <tbody>
                             {this.props.data.map((task, index) => {
-                                return <TaskItem task={task} key={index} index={index} editTask={this.props.editTask} />;
+                                return <TaskItem 
+                                    task={task} 
+                                    key={index} 
+                                    index={index} 
+                                    editTask={this.props.editTask}
+                                    editStatus={this.props.editStatus} />;
                             })}
                         </tbody>
                     </table>

@@ -22,6 +22,14 @@ class App extends Component {
         console.log("Task")
     }
 
+    showAddNewTask =() => {
+        console.log("showAddNewTask")
+        this.setState({
+            isAddNewTask: true,
+            task: []
+        })
+    }
+
     addNewTask = (task) => {
         
         this.setState({isAddNewTask: true, tasks: [...this.state.tasks, task]}, () => {
@@ -30,15 +38,37 @@ class App extends Component {
         })
     }
 
-    editTask = (index, task) => {
+    editTask = (task) => {
         this.setState({
             isAddNewTask: false,
             task: task
         })
     }
 
-    updateTask = (index, task) => {
+    updateTask = (task) => {
+        console.log(task)
+        let tasks = this.state.tasks
         
+        for(let i in tasks) {
+            if(task.id === tasks[i].id) {
+                tasks[i] = task
+            }
+        }
+
+        this.setState({tasks}, () => this.cacheTaskList(this.state.tasks)) 
+    }
+
+    editStatus = (status, task) => {
+        console.log(task)
+        let tasks = this.state.tasks
+        
+        for(let i in tasks) {
+            if(task.id === tasks[i].id) {
+                tasks[i].status = status
+            }
+        }
+
+        this.setState({tasks}, () => this.cacheTaskList(this.state.tasks)) 
     }
     
     componentWillMount() {
@@ -72,17 +102,22 @@ class App extends Component {
                     <div className="container-fluid">
                         <div className="row">
                             {/* PANEL */}
-                            <Panel initializeTask={this.initializeTask}/>
+                            <Panel initializeTask={this.initializeTask} showAddNewTask={this.showAddNewTask}/>
 
                             {/* DISPLAY */}
-                            <TaskList data={this.state.tasks} editTask={this.editTask}/>
+                            <TaskList 
+                                data={this.state.tasks} 
+                                editTask={this.editTask} 
+                                editStatus={this.editStatus} />
                         </div>
                     </div>
                     
                     {/* The Modal */}
-                    <Modal addNewTask={this.addNewTask} 
+                    <Modal 
+                        addNewTask={this.addNewTask}
+                        updateTask={this.updateTask} 
                         task={this.state.task} 
-                        isAddNewTask={this.state.isAddNewTask}/>
+                        isAddNewTask={this.state.isAddNewTask} />
                 </div>
             </div>
         );

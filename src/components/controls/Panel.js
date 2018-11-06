@@ -13,7 +13,7 @@ class Panel extends Component {
                     <img src="./img/user_1.jpg" className="ml-2 user" alt="avatar" />
                     <h3 className="text-white d-inline font-weight-light ml-2">Lê Quang Song</h3>
                 </div>
-                <AddNewTask initializeTask={this.props.initializeTask}/>
+                <AddNewTask initializeTask={this.props.initializeTask} showAddNewTask={this.props.showAddNewTask}/>
                 {/* Filter */}
                 <div className="px-3">
                     <FilterProgress />

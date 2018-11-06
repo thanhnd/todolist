@@ -18,9 +18,13 @@ class Modal extends Component {
 
     onSubmit = (event) => {
         event.preventDefault()
-        this.setState({
-            id: randomID(5, "aA0")
-        }, () => this.props.addNewTask(this.state))
+        if(this.props.isAddNewTask) {
+            this.setState({
+                id: randomID(5, "aA0")
+            }, () => this.props.addNewTask(this.state))
+        } else {
+            this.props.updateTask(this.state)
+        }
     }
 
     onChange = (event) => {
@@ -45,10 +49,21 @@ class Modal extends Component {
         
         if(!nextProps.isAddNewTask && nextProps && nextProps.task) {
             this.setState(nextProps.task)
+        } else {
+            this.setState({
+                id: "",
+                name: "",
+                description: "",
+                priority: "-1",
+                memberIDArr: [],
+                labelArr: [],
+                status: 1
+            })
         }
     };
     
     render() {
+
         return (
             <div className="modal fade" id="modalTask">
                 <div className="modal-dialog modal-lg">

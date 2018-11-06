@@ -2,6 +2,21 @@ import React, { Component } from 'react';
 
 class TaskItem extends Component {
 
+    constructor(props) {
+        super(props)
+        this.state = {
+            status: ""
+        }
+    }
+
+    onChange = (e) => {
+        this.setState({
+            [e.target.name]: e.target.value
+        }, () => {
+            this.props.editStatus(this.state.status, this.props.task)
+        })
+    }
+
     render() {
         let priority = {
             1: "Cao",
@@ -61,9 +76,9 @@ class TaskItem extends Component {
                     <button type="button" className="btn btn-outline-primary" 
                         data-toggle="modal"
                         data-target="#modalTask"
-                        onClick={this.props.editTask.bind(this, index, task)}>Sửa</button>
+                        onClick={this.props.editTask.bind(this, task)}>Sửa</button>
                     <div className="form-group ml-2 mt-3">
-                        <select className="form-control" defaultValue={task.status}>
+                        <select className="form-control" name="status" defaultValue={task.status} onChange={this.onChange}>
                             <option>Chọn trạng thái</option>
                             <option value="1">Chưa bắt đầu</option>
                             <option value="2">Đang tiến hành</option>
