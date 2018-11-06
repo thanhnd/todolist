@@ -41,6 +41,13 @@ class Modal extends Component {
         });
     }
 
+    componentWillReceiveProps = (nextProps) => {
+        
+        if(!nextProps.isAddNewTask && nextProps && nextProps.task) {
+            this.setState(nextProps.task)
+        }
+    };
+    
     render() {
         return (
             <div className="modal fade" id="modalTask">
@@ -61,11 +68,11 @@ class Modal extends Component {
                                 </div>
                                 <div className="form-group">
                                     <label >Mô tả:</label>
-                                    <textarea className="form-control" rows={2} id="description" name="description" onChange={this.onChange} />
+                                    <textarea className="form-control" rows={2} id="description" name="description" onChange={this.onChange} value={this.state.description} />
                                 </div>
                                 <div className="form-group">
                                     <label>Độ ưu tiên:</label>
-                                    <select className="form-control" id="priority" name="priority" onChange={this.onChange}>
+                                    <select className="form-control" id="priority" name="priority" onChange={this.onChange} value={this.state.priority}>
                                         <option value="-1">Chọn độ ưu tiên</option>
                                         <option value="3">Thấp</option>
                                         <option value="2">Trung bình</option>
