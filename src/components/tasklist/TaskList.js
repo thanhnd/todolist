@@ -18,7 +18,7 @@ class TaskList extends Component {
                                     type="text"
                                     className="form-control"
                                     placeholder="Tìm kiếm công việc"
-                                />format
+                                />
                             </div>
                         </div>
                     </div>
@@ -38,7 +38,7 @@ class TaskList extends Component {
                         </thead>
                         <tbody>
                             {this.props.data.map((task, index) => {
-                                return <TaskItem task={task} key={index} index={index} />;
+                                return <TaskItem task={task} key={index} index={index} editTask={this.props.editTask} />;
                             })}
                         </tbody>
                     </table>

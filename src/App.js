@@ -12,7 +12,9 @@ class App extends Component {
         super(props)
 
         this.state = {
-            tasks: []
+            tasks: [],
+            isAddNewTask: true,
+            task:{}
         }
     }
     
@@ -22,10 +24,21 @@ class App extends Component {
 
     addNewTask = (task) => {
         
-        this.setState({tasks: [...this.state.tasks, task]}, () => {
+        this.setState({isAddNewTask: true, tasks: [...this.state.tasks, task]}, () => {
             console.log(this.state.tasks)
             this.cacheTaskList(this.state.tasks)
         })
+    }
+
+    editTask = (index, task) => {
+        this.setState({
+            isAddNewTask: false,
+            task: task
+        })
+    }
+
+    updateTask = (index, task) => {
+        
     }
     
     componentWillMount() {
@@ -62,12 +75,14 @@ class App extends Component {
                             <Panel initializeTask={this.initializeTask}/>
 
                             {/* DISPLAY */}
-                            <TaskList data={this.state.tasks}/>
+                            <TaskList data={this.state.tasks} editTask={this.editTask}/>
                         </div>
                     </div>
                     
                     {/* The Modal */}
-                    <Modal addNewTask={this.addNewTask} />
+                    <Modal addNewTask={this.addNewTask} 
+                        task={this.state.task} 
+                        isAddNewTask={this.state.isAddNewTask}/>
                 </div>
             </div>
         );

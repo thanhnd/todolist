@@ -58,7 +58,10 @@ class TaskItem extends Component {
                     }
                 </td>
                 <td className="text-center d-flex align-items-center">
-                    <button type="button" className="btn btn-outline-primary">Sửa</button>
+                    <button type="button" className="btn btn-outline-primary" 
+                        data-toggle="modal"
+                        data-target="#modalTask"
+                        onClick={this.props.editTask.bind(this, index, task)}>Sửa</button>
                     <div className="form-group ml-2 mt-3">
                         <select className="form-control" defaultValue={task.status}>
                             <option>Chọn trạng thái</option>
