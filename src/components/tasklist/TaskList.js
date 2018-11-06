@@ -1,13 +1,8 @@
-import React, { Component } from 'react';
-import TaskItem from './TaskItem';
-
+import React, { Component } from "react";
+import TaskItem from "./TaskItem";
 
 class TaskList extends Component {
-
     render() {
-
-        
-
         return (
             <div className="col-md-9 px-0">
                 <div className="container-fluid px-0">
@@ -19,7 +14,11 @@ class TaskList extends Component {
                         </div>
                         <div className="col-md-6">
                             <div className="form-group text-left my-0">
-                                <input type="text" className="form-control" placeholder="Tìm kiếm công việc" />
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    placeholder="Tìm kiếm công việc"
+                                />format
                             </div>
                         </div>
                     </div>
@@ -38,18 +37,13 @@ class TaskList extends Component {
                             </tr>
                         </thead>
                         <tbody>
-                            {
-
-                                this.props.data.map((task, index) => {
-                                    return <TaskItem task={task} key={index} index={index}/>
-                                })
-
-                            }
+                            {this.props.data.map((task, index) => {
+                                return <TaskItem task={task} key={index} index={index} />;
+                            })}
                         </tbody>
                     </table>
                 </div>
             </div>
-
         );
     }
 }
