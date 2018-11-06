@@ -1,20 +1,26 @@
 import React, { Component } from 'react'
 import { Checkbox, CheckboxGroup } from 'react-checkbox-group'
+var randomID = require("random-id")
 
 class Modal extends Component {
     constructor(props) {
         super(props)
         this.state = {
+            id: "",
             name: "",
             description: "",
             priority: "-1",
             memberIDArr: [],
-            labelArr: []
+            labelArr: [],
+            status: 1
         }
     }
 
     onSubmit = (event) => {
         event.preventDefault()
+        this.setState({
+            id: randomID(5, "aA0")
+        }, () => this.props.addNewTask(this.state))
     }
 
     onChange = (event) => {
@@ -39,7 +45,7 @@ class Modal extends Component {
         return (
             <div className="modal fade" id="modalTask">
                 <div className="modal-dialog modal-lg">
-                    <form>
+                    <form onSubmit={this.onSubmit}>
                         <div className="modal-content">
                             {/* Modal Header */}
                             <div className="modal-header">
@@ -96,11 +102,10 @@ class Modal extends Component {
                             </div>
                             {/* Modal footer */}
                             <div className="modal-footer">
-                                <button type="submit" className="btn btn-success">Thê</button>
+                                <button type="submit" className="btn btn-success">Thêm</button>
                                 <button type="button" className="btn btn-danger" data-dismiss="modal">Close</button>
                             </div>
                         </div>
-
                     </form>
                 </div>
             </div>

@@ -7,6 +7,7 @@ import Modal from './components/modals/Modal'
 import tasklist from './data/TasksData'
 
 class App extends Component {
+    
     constructor(props) {
         super(props)
 
@@ -18,10 +19,21 @@ class App extends Component {
     initializeTask = () => {
         console.log("Task")
     }
+
+    addNewTask = (task) => {
+        
+        this.setState({tasks: [...this.state.tasks, task]}, () => {
+            console.log(this.state.tasks)
+            this.cacheTaskList(this.state.tasks)
+        })
+    }
     
     componentWillMount() {
-        localStorage.setItem("tasks", JSON.stringify(tasklist));
-        
+        this.cacheTaskList(tasklist)
+    }
+
+    cacheTaskList(data) {
+        localStorage.setItem("tasks", JSON.stringify(data));
     }
 
     componentDidMount(){
@@ -55,7 +67,7 @@ class App extends Component {
                     </div>
                     
                     {/* The Modal */}
-                    <Modal />
+                    <Modal addNewTask={this.addNewTask} />
                 </div>
             </div>
         );
