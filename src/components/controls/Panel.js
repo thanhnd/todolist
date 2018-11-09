@@ -16,7 +16,7 @@ class Panel extends Component {
                 <AddNewTask initializeTask={this.props.initializeTask} showAddNewTask={this.props.showAddNewTask}/>
                 {/* Filter */}
                 <div className="px-3">
-                    <FilterProgress />
+                    <FilterProgress filterProgress={this.props.filterProgress} />
                     <FilterLabel />
                     <FilterPriority />
                     <Sort />

@@ -3,6 +3,29 @@ import TaskItem from "./TaskItem";
 
 class TaskList extends Component {
     render() {
+        let {data, filterType, filterStatus} = this.props
+        let tasks = []
+        switch(filterType) {
+            case "FILTER_STATUS":
+            console.log(data)
+            console.log(filterStatus)
+            if(filterStatus === -1 || !filterStatus) {
+                tasks = data
+                break 
+            }
+            for (let task of data) {
+                console.log(task.status)
+                    console.log(filterStatus)
+                if(parseInt(task.status) === filterStatus) {
+                    
+                    tasks.push(task)
+                }
+            }
+            break;
+
+            default:
+            tasks = data
+        }
         return (
             <div className="col-md-9 px-0">
                 <div className="container-fluid px-0">
@@ -37,7 +60,7 @@ class TaskList extends Component {
                             </tr>
                         </thead>
                         <tbody>
-                            {this.props.data.map((task, index) => {
+                            {tasks.map((task, index) => {
                                 return <TaskItem 
                                     task={task} 
                                     key={index} 

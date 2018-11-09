@@ -78,11 +78,12 @@ class TaskItem extends Component {
                         data-target="#modalTask"
                         onClick={this.props.editTask.bind(this, task)}>Sửa</button>
                     <div className="form-group ml-2 mt-3">
-                        <select className="form-control" name="status" defaultValue={task.status} onChange={this.onChange}>
+                        <select className="form-control" name="status" value={task.status} onChange={this.onChange}>
                             <option>Chọn trạng thái</option>
                             <option value="1">Chưa bắt đầu</option>
                             <option value="2">Đang tiến hành</option>
                             <option value="3">Đã hoàn thành</option>
+                            <option value="4">Huỷ bỏ</option>
 
                         </select>
 

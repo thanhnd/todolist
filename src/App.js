@@ -14,7 +14,9 @@ class App extends Component {
         this.state = {
             tasks: [],
             isAddNewTask: true,
-            task:{}
+            task:{},
+            filterType: "",
+            filterStatus: ""
         }
     }
     
@@ -22,11 +24,18 @@ class App extends Component {
         console.log("Task")
     }
 
-    showAddNewTask =() => {
+    showAddNewTask = () => {
         console.log("showAddNewTask")
         this.setState({
             isAddNewTask: true,
             task: []
+        })
+    }
+
+    filterStatus = (status)  => {
+        this.setState({
+            filterType: "FILTER_STATUS",
+            filterStatus: status
         })
     }
 
@@ -102,13 +111,18 @@ class App extends Component {
                     <div className="container-fluid">
                         <div className="row">
                             {/* PANEL */}
-                            <Panel initializeTask={this.initializeTask} showAddNewTask={this.showAddNewTask}/>
+                            <Panel 
+                                initializeTask={this.initializeTask} 
+                                showAddNewTask={this.showAddNewTask}
+                                filterProgress={this.filterStatus}/>
 
                             {/* DISPLAY */}
                             <TaskList 
                                 data={this.state.tasks} 
                                 editTask={this.editTask} 
-                                editStatus={this.editStatus} />
+                                editStatus={this.editStatus}
+                                filterType={this.state.filterType}
+                                filterStatus={this.state.filterStatus} />
                         </div>
                     </div>
                     
