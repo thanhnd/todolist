@@ -16,7 +16,8 @@ class App extends Component {
             isAddNewTask: true,
             task:{},
             filterType: "",
-            filterStatus: ""
+            filterStatus: "",
+            filterLabel: ""
         }
     }
     
@@ -36,6 +37,13 @@ class App extends Component {
         this.setState({
             filterType: "FILTER_STATUS",
             filterStatus: status
+        })
+    }
+
+    filterLabel = (label)  => {
+        this.setState({
+            filterType: "FILTER_LABEL",
+            filterLabel: label
         })
     }
 
@@ -114,7 +122,8 @@ class App extends Component {
                             <Panel 
                                 initializeTask={this.initializeTask} 
                                 showAddNewTask={this.showAddNewTask}
-                                filterProgress={this.filterStatus}/>
+                                filterProgress={this.filterStatus}
+                                filterLabel={this.filterLabel}/>
 
                             {/* DISPLAY */}
                             <TaskList 
@@ -122,7 +131,8 @@ class App extends Component {
                                 editTask={this.editTask} 
                                 editStatus={this.editStatus}
                                 filterType={this.state.filterType}
-                                filterStatus={this.state.filterStatus} />
+                                filterStatus={this.state.filterStatus}
+                                filterLabel={this.state.filterLabel} />
                         </div>
                     </div>
                     
