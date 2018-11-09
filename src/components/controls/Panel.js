@@ -18,7 +18,7 @@ class Panel extends Component {
                 <div className="px-3">
                     <FilterProgress filterProgress={this.props.filterProgress} />
                     <FilterLabel filterLabel={this.props.filterLabel} />
-                    <FilterPriority />
+                    <FilterPriority filterPriority={this.props.filterPriority} />
                     <Sort />
                 </div>
             </div>

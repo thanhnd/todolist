@@ -3,7 +3,7 @@ import TaskItem from "./TaskItem";
 
 class TaskList extends Component {
     render() {
-        let {data, filterType, filterStatus, filterLabel} = this.props
+        let {data, filterType, filterStatus, filterLabel, filterPriority} = this.props
         let tasks = []
         switch(filterType) {
             case "FILTER_STATUS":
@@ -31,6 +31,23 @@ class TaskList extends Component {
                     console.log(task.labelArr)
                     console.log(filterLabel)
                     if(task.labelArr.includes(filterLabel)) {
+                        
+                        tasks.push(task)
+                    }
+                }
+
+            break;
+
+            case "FILTER_PRIORITY":
+            console.log(filterPriority)
+                if(!filterPriority) {
+                    tasks = data
+                    break
+                }
+                for (let task of data) {
+
+                    console.log(task.priority)
+                    if(parseInt(task.priority) === parseInt(filterPriority)) {
                         
                         tasks.push(task)
                     }
