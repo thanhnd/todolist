@@ -9,8 +9,9 @@ class Sort extends Component {
             <div className="form-group text-left">
                 <label>Sắp xếp theo công việc</label>
                 <select className="form-control" onChange={this.onChange}>
-                    <option value={0}>Từ A đến Z</option>
-                    <option value={1}>Từ Z đến A</option>
+                    <option value="">Không sắp xếp</option>
+                    <option value="asc">Từ A đến Z</option>
+                    <option value="desc">Từ Z đến A</option>
                 </select>
             </div>
         );

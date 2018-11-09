@@ -20,7 +20,7 @@ class App extends Component {
             filterLabel: "",
             filterPriority: "",
             filterString: "",
-            sort: 0
+            sort: ""
         }
     }
     

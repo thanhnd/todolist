@@ -84,13 +84,16 @@ class TaskList extends Component {
                 tasks = data
         }
     
-        if(parseInt(sort) === 1) {
-            tasks.reverse(this.compare)
+        let sortTasks = [...tasks]
+        if(sort === "asc") {
+            sortTasks.sort(this.compare)
+        } else if(sort === "desc") {
+            sortTasks.reverse(this.compare)
         } else {
-            tasks.sort(this.compare)
+            console.log("dadafds")
+            sortTasks = data
         }
         
-
         return (
             <div className="col-md-9 px-0">
                 <div className="container-fluid px-0">
@@ -126,7 +129,7 @@ class TaskList extends Component {
                             </tr>
                         </thead>
                         <tbody>
-                            {tasks.map((task, index) => {
+                            {sortTasks.map((task, index) => {
                                 return <TaskItem 
                                     task={task} 
                                     key={index} 
