@@ -74,7 +74,10 @@ class TaskList extends Component {
                 data.filter((task) => {
                     if(task.name.toLowerCase().indexOf(filterString.toLowerCase()) !== -1) {
                         tasks.push(task)
+                        
                     }
+
+                    return 1
                 })
 
             break;
@@ -90,7 +93,6 @@ class TaskList extends Component {
         } else if(sort === "desc") {
             sortTasks.reverse(this.compare)
         } else {
-            console.log("dadafds")
             sortTasks = data
         }
         
