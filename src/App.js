@@ -19,6 +19,7 @@ class App extends Component {
             filterStatus: "",
             filterLabel: "",
             filterPriority: "",
+            filterString: "",
             sort: 0
         }
     }
@@ -60,6 +61,13 @@ class App extends Component {
     sort = (sort) => {
         this.setState({
             sort
+        })
+    }
+
+    search = (filterString) => {
+        this.setState({
+            filterType: "FILTER_STRING",
+            filterString
         })
     }
 
@@ -151,6 +159,9 @@ class App extends Component {
                                 filterType={this.state.filterType}
                                 filterStatus={this.state.filterStatus}
                                 filterLabel={this.state.filterLabel}
+                                filterPriority={this.state.filterPriority}
+                                filterString={this.state.filterString}
+                                search={this.search}
                                 sort={this.state.sort} />
                         </div>
                     </div>
