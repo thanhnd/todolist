@@ -18,7 +18,8 @@ class App extends Component {
             filterType: "",
             filterStatus: "",
             filterLabel: "",
-            filterPriority: ""
+            filterPriority: "",
+            sort: 0
         }
     }
     
@@ -53,6 +54,12 @@ class App extends Component {
         this.setState({
             filterType: "FILTER_PRIORITY",
             filterPriority: priority
+        })
+    }
+
+    sort = (sort) => {
+        this.setState({
+            sort
         })
     }
 
@@ -133,7 +140,8 @@ class App extends Component {
                                 showAddNewTask={this.showAddNewTask}
                                 filterProgress={this.filterStatus}
                                 filterLabel={this.filterLabel}
-                                filterPriority={this.filterPriority}/>
+                                filterPriority={this.filterPriority}
+                                sort={this.sort}/>
 
                             {/* DISPLAY */}
                             <TaskList 
@@ -143,7 +151,7 @@ class App extends Component {
                                 filterType={this.state.filterType}
                                 filterStatus={this.state.filterStatus}
                                 filterLabel={this.state.filterLabel}
-                                filterPriority={this.state.filterPriority} />
+                                sort={this.state.sort} />
                         </div>
                     </div>
                     

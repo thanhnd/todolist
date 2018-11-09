@@ -2,8 +2,18 @@ import React, { Component } from "react";
 import TaskItem from "./TaskItem";
 
 class TaskList extends Component {
+
+    compare(a,b) {
+        if (a.name < b.name)
+          return -1;
+        if (a.name > b.name)
+          return 1;
+        return 0;
+      }
+      
+
     render() {
-        let {data, filterType, filterStatus, filterLabel, filterPriority} = this.props
+        let {data, filterType, filterStatus, filterLabel, filterPriority, sort} = this.props
         let tasks = []
         switch(filterType) {
             case "FILTER_STATUS":
@@ -59,6 +69,14 @@ class TaskList extends Component {
             default:
                 tasks = data
         }
+    
+        if(parseInt(sort) === 1) {
+            tasks.reverse(this.compare)
+        } else {
+            tasks.sort(this.compare)
+        }
+        
+
         return (
             <div className="col-md-9 px-0">
                 <div className="container-fluid px-0">
