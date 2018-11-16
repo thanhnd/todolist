@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import TaskItem from "./TaskItem";
+import * as Constant from "../../constants/ConstantControl"
 
 class TaskList extends Component {
 
@@ -20,7 +21,7 @@ class TaskList extends Component {
         let {data, filterType, filterStatus, filterLabel, filterPriority, sort, filterString} = this.props
         let tasks = []
         switch(filterType) {
-            case "FILTER_STATUS":
+            case Constant.FILTER_STATUS:
             
             if(filterStatus === -1 || !filterStatus) {
                 tasks = data
@@ -36,7 +37,7 @@ class TaskList extends Component {
             }
             break;
 
-            case "FILTER_LABEL":
+            case Constant.FILTER_LABEL:
                 if(!filterLabel) {
                     tasks = data
                     break
@@ -50,7 +51,7 @@ class TaskList extends Component {
 
             break;
 
-            case "FILTER_PRIORITY":
+            case Constant.FILTER_PRIORITY:
             
                 if(!filterPriority) {
                     tasks = data
@@ -65,7 +66,7 @@ class TaskList extends Component {
 
             break;
 
-            case "FILTER_STRING":
+            case Constant.FILTER_STRING:
             
                 if(!filterString) {
                     tasks = data
@@ -88,12 +89,12 @@ class TaskList extends Component {
         }
     
         let sortTasks = [...tasks]
-        if(sort === "asc") {
+        if(sort === Constant.SORT_ASC) {
             sortTasks.sort(this.compare)
-        } else if(sort === "desc") {
+        } else if(sort === Constant.SORT_DESC) {
             sortTasks.reverse(this.compare)
         } else {
-            sortTasks = data
+            sortTasks = [...tasks]
         }
         
         return (

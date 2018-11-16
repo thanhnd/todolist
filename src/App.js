@@ -5,6 +5,7 @@ import Panel from './components/controls/Panel'
 import TaskList from './components/tasklist/TaskList'
 import Modal from './components/modals/Modal'
 import tasklist from './data/TasksData'
+import * as Constant from './constants/ConstantControl'
 
 class App extends Component {
     
@@ -38,14 +39,14 @@ class App extends Component {
 
     filterStatus = (status)  => {
         this.setState({
-            filterType: "FILTER_STATUS",
+            filterType: Constant.FILTER_STATUS,
             filterStatus: status
         })
     }
 
     filterLabel = (label)  => {
         this.setState({
-            filterType: "FILTER_LABEL",
+            filterType: Constant.FILTER_LABEL,
             filterLabel: label
         })
     }
@@ -53,7 +54,7 @@ class App extends Component {
     filterPriority = (priority)  => {
         console.log(priority)
         this.setState({
-            filterType: "FILTER_PRIORITY",
+            filterType: Constant.FILTER_PRIORITY,
             filterPriority: priority
         })
     }
@@ -66,7 +67,7 @@ class App extends Component {
 
     search = (filterString) => {
         this.setState({
-            filterType: "FILTER_STRING",
+            filterType: Constant.FILTER_STRING,
             filterString
         })
     }

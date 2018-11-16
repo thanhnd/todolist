@@ -1,0 +1,6 @@
+export const FILTER_PRIORITY = "FILTER_PRIORITY"
+export const FILTER_LABEL = "FILTER_LABEL"
+export const FILTER_STRING = "FILTER_STRING"
+export const FILTER_STATUS = "FILTER_STATUS"
+export const SORT_ASC = "SORT_ASC"
+export const SORT_DESC = "SORT_DESC"
